@@ -43,11 +43,6 @@ end
 // Next State Logic
 always @(*) begin
     next_state = state;
-    card_retained = 0;
-    cash_dispensed = 0;
-    warning_message = 0;
-    card_blocked = 0;
-
     case (state)
         IDLE:
             if (card_inserted)
@@ -83,7 +78,7 @@ always @(*) begin
                 next_state = DISPENSE_CASH;
             else
                 begin
-                exceed_balance <= 1;
+                exceed_balance = 1;
                 next_state =TRANSACTION;
                 end
 
@@ -128,7 +123,6 @@ always @(posedge clk) begin
             EJECT_CARD: begin
                 cash_dispensed <= 0;
                 pin_attempts <= 0; // reset attempts after card eject
-                card_retained <= 0;
                 warning_message <= 0;
                 card_blocked <= 0;
             end
