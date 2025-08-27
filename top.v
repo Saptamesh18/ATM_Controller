@@ -47,6 +47,9 @@ always @(*) begin
         IDLE:
             if (card_inserted)
                 next_state = CARD_INSERTED;
+            else 
+                next_state = IDLE;
+        
 
         CARD_INSERTED:
             if (pin_entered)
@@ -79,7 +82,7 @@ always @(*) begin
             else
                 begin
                 exceed_balance = 1;
-                next_state =TRANSACTION;
+                next_state = EJECT_CARD;
                 end
 
         DISPENSE_CASH:
