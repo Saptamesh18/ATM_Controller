@@ -6,7 +6,6 @@ module ATM_Controller (
     input pin_correct,
     input [1:0] transaction_choice, // 2'b00: Idle, 2'b01: Balance, 2'b10: Withdrawal
     input [15:0] amount,
-    output reg card_retained,
     output reg cash_dispensed,
     output reg [15:0] balance,
     output  [2:0] state_indicator,
